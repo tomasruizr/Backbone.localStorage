@@ -6,6 +6,11 @@ Quite simply a localStorage adapter for Backbone. It's a drop-in replacement for
 
 [![Gittip](http://badgr.co/gittip/jeromegn.png)](https://www.gittip.com/jeromegn/)
 
+_______
+Added by Tomás Ruiz <tomasruizr@gmail.com>
+Support the plug and play with the override, so whenever it's present, things will be stored locally.
+_______
+
 ## Usage
 
 Include Backbone.localStorage after having included Backbone.js:
@@ -19,11 +24,11 @@ Create your collections like so:
 
 ```javascript
 window.SomeCollection = Backbone.Collection.extend({
-  
+
   localStorage: new Backbone.LocalStorage("SomeCollection"), // Unique name within your app.
-  
+
   // ... everything else is normal.
-  
+
 });
 ```
 ### RequireJS
@@ -34,7 +39,7 @@ Include [RequireJS](http://requirejs.org):
 <script type="text/javascript" src="lib/require.js"></script>
 ```
 
-RequireJS config: 
+RequireJS config:
 ```javascript
 require.config({
     paths: {
@@ -52,7 +57,7 @@ define("SomeCollection", ["localstorage"], function() {
     var SomeCollection = Backbone.Collection.extend({
         localStorage: new Backbone.LocalStorage("SomeCollection") // Unique name within your app.
     });
-  
+
     return SomeCollection;
 });
 ```
