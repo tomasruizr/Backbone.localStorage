@@ -9,6 +9,7 @@ Quite simply a localStorage adapter for Backbone. It's a drop-in replacement for
 _______
 Added by Tomás Ruiz <tomasruizr@gmail.com>
 Support the plug and play with the override, so whenever it's present, things will be stored locally.
+The storage will be identified by the model __urlRoot__ in each model that syncs, so the property must be present.
 _______
 
 ## Usage
