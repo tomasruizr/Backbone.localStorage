@@ -246,6 +246,10 @@ Backbone.getSyncMethod = function(model) {
 // Override 'Backbone.sync' to default to localSync,
 // the original 'Backbone.sync' is still available in 'Backbone.ajaxSync'
 Backbone.sync = function(method, model, options) {
+  //Added The localStorage automatically to the model that is going to be saved to develop locally whenever the override is present.
+  model.localStorage= new Backbone.LocalStorage("Event", {serialize: function(item) {
+                    return _.isObject(item) ? JSON.stringify(_.omit(item.attributes,item.ignore)) : item;
+                  }});
   return Backbone.getSyncMethod(model).apply(this, [method, model, options]);
 };
 
