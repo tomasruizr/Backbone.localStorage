@@ -248,11 +248,19 @@ Backbone.getSyncMethod = function(model) {
 Backbone.sync = function(method, model, options) {
   //Added The localStorage automatically to the model that is going to be saved to develop locally whenever the override is present.
   //The storage will be identified by the model urlRoot.
-  model.localStorage= new Backbone.LocalStorage(model.urlRoot, {serialize: function(item) {
-                    return _.isObject(item) ? JSON.stringify(_.omit(item.attributes,item.ignore)) : item;
-                  }});
+  model.localStorage= new Backbone.LocalStorage(model.urlRoot || model.url, {
+      serialize: function(item) {
+        return _.isObject(item) ? JSON.stringify(_.omit(item.attributes,item.ignore)) : item;
+      },
+      deserialize: function (data) {
+        return data && JSON.parse(data);
+      }
+    });
   return Backbone.getSyncMethod(model).apply(this, [method, model, options]);
 };
+// Backbone.sync = function(method, model, options) {
+//   return Backbone.getSyncMethod(model).apply(this, [method, model, options]);
+// };
 
 return Backbone.LocalStorage;
 }));
