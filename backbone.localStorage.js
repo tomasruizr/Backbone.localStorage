@@ -230,7 +230,7 @@ Backbone.LocalStorage.sync = window.Store.sync = Backbone.localSync = function(m
   // always execute callback for success and error
   if (options && options.complete) options.complete(resp);
 
-  return syncDfd && syncDfd.promise();
+  return (syncDfd && syncDfd.promise()) || true;
 };
 
 Backbone.ajaxSync = Backbone.sync;
